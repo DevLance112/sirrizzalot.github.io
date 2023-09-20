@@ -93,26 +93,19 @@
                               <h3>Indexer</h3>
                               <ul>
                                   <li>Utilized the same word indexing method as the webcrawler.</li>
-                                  <li>Stored information in an inverse index with words mapping {}</li>
-                              </ul>
-                              <h3>Retriever</h3>
-                              <ul>
-                                  <li>Utilized the same word indexing method as the webcrawler.</li>
-                                  <li>Stored information in an inverse index with words mapping {}</li>
+                                  <li>Stored information in an inverted index with words mapping a set of {url_ids, additional information}. This information is stored into a document but is not loaded entirely because it is too big to load into memory. </li>
+                                  <li>Indexed each word with their respective byte position in the inverted index. This allows us to load it in memory and access it in O(1) times.</li>
+                                  <li>Used Url_ids to differentiate different urls, saving space. This information is stored into a document and is entirely loaded into memory since it is small.</li>
+                                  <li>Improved with a tf-idf inverted index where words mapping a set of {url_ids, their tf-idf} with values obtained from the original inverted index</li>
                               </ul>
                               <h3>Ranker</h3>
                               <ul>
-                                  <li>Utilized the same word indexing method as the webcrawler.</li>
-                                  <li>Stored information in an inverse index with words mapping {}</li>
+                                  <li>the tf-idf calculation was done using the following formula where info[1] is # of regular word frequency, info[2] is # of special (fonted) word frequency, info[3] is total # of regular word frequency: <img src="assets/images/tf-idf%20visualization.JPG"> I designed the TF portion to account for the importance of ratio of frequency / total # of words but used log to have a regularized importance. Additionally, I designed the IDF portion to focus the impact of documents with rare words but used log to reduce the significance of overly high ratios.</li>
+                                  <li>Ranker Compared Cosine similarity between the tf-idf of each url and the query.<img src="assets/images/Cosine-Similarity-Visulization.JPG"></li>
+                                  <li>We added additional weights like special Character frequency to increase the importance of documents with special Characters.</li>
+                                  <li>Lastly we return the top 5 scored urls.</li>
                               </ul>
-                          </div>
-                      </div>
-                  </div>
-                 <figure><img src="assets/images/work-details-image-2.jpg"></figure>
-                  <div class="ds-work-content-sec">
-                      <div class="row justify-content-center">
-                          <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-xxl-8">
-                              <p>Phasellus non faucibus purus, a venenatis diam. In faucibus orci mauris, porttitor egestas diam elementum non. Vestibulum non metus tempus, sagittis libero sed, euismod purus. Cras dolor nulla, hendrerit vitae libero eu, finibus ultricies dolor. Vestibulum non metus tempus, sagittis libero sed, euismod purus. Cras dolor nulla, hendrerit vitae libero eu, finibus ultricies dolor.</p>
+                              <p>We optimized the system to perform all search within 100ms which significantly improves user experience.</p>
                           </div>
                       </div>
                   </div>
