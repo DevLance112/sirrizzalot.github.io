@@ -121,18 +121,18 @@
      </div>
    </main>
 
-   <!--  footer -->
-   <footer class="ds-footer text-center">
-     <div class="container">
-        <section>
-          <span>Stay in touch</span>
-          <h4>Ready to talk?</h4>
-          <p>Feel free to contact me</p>
-          <a href="lanceprofe@gmail.com" class="ds-button">Lets Talk</a>
-        </section>
-        <span class="ds-copyright">© 2022 All rights reserved. <a target="_blank" href="http://www.mobanwang.com/" title="网页模板">网页模板</a>.</span>
-     </div>
-   </footer>
+    <!--  footer -->
+    <footer class="ds-footer text-center">
+        <div class="container">
+            <section>
+                <span>Stay in touch</span>
+                <h4>Ready to talk?</h4>
+                <p>Feel free to contact me</p>
+                <button id="copyEmailButton" class="ds-button" onclick="copyEmail()">Lets Talk</button>
+            </section>
+            <span class="ds-copyright">© 2022 All rights reserved. <a target="_blank" href="http://www.mobanwang.com/" title="网页模板">网页模板</a>.</span>
+        </div>
+    </footer>
 
 
     <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
@@ -145,5 +145,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
     <script src="assets/js/main.js"></script>
+    <script>
+        function copyEmail() {
+            const tempInput = document.createElement('input');
+            tempInput.value = 'lanceprofe@gmail.com';
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            const button = document.getElementById('copyEmailButton');
+            button.textContent = 'Shoot me an email, I copied it for ya!';
+        }
+    </script>
   </body>
 </html>
